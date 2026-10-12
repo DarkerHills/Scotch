@@ -1,0 +1,295 @@
+@import "tailwindcss";
+
+/*
+ * KernUI design tokens → Tailwind v4 theme.
+ * Source: Figma "KernUI – Design System" › Color & Semantics, Badges & Tags.
+ *
+ * Primitives are copied verbatim. Semantic tokens follow KernUI naming
+ * ({group}-{role}: text-sub, bg-surface, stroke-soft, success-base …).
+ * Per KernUI's "Changing to your brand color" guidance, primary-* is remapped
+ * from purple to Scotch forest green (green-950 is the base).
+ */
+@theme {
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* ── Primitives ─────────────────────────────────────────── */
+  --color-neutral-0: #ffffff;
+  --color-neutral-50: #f7f7f7;
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-200: #ebebeb;
+  --color-neutral-300: #d1d1d1;
+  --color-neutral-400: #a3a3a3;
+  --color-neutral-500: #7b7b7b;
+  --color-neutral-600: #5c5c5c;
+  --color-neutral-700: #333333;
+  --color-neutral-800: #292929;
+  --color-neutral-900: #1c1c1c;
+  --color-neutral-950: #171717;
+
+  --color-green-50: #e0faec;
+  --color-green-200: #c2f5da;
+  --color-green-400: #3ee089;
+  --color-green-500: #1fc16b;
+  --color-green-600: #1daf61;
+  --color-green-950: #0b4627;
+
+  --color-orange-50: #fff3eb;
+  --color-orange-200: #ffd9c0;
+  --color-orange-400: #ffa468;
+  --color-orange-500: #fa7319;
+  --color-orange-600: #e16614;
+  --color-orange-950: #71330a;
+
+  --color-red-50: #ffebec;
+  --color-red-200: #ffc0c5;
+  --color-red-400: #ff6875;
+  --color-red-500: #fb3748;
+  --color-red-600: #e93544;
+  --color-red-950: #681219;
+
+  --color-blue-50: #ebf1ff;
+  --color-blue-200: #c0d5ff;
+  --color-blue-400: #6895ff;
+  --color-blue-500: #335cff;
+  --color-blue-950: #122368;
+
+  --color-sky-50: #ebf8ff;
+  --color-sky-200: #c0eaff;
+  --color-sky-400: #68cdff;
+  --color-sky-500: #47c2ff;
+  --color-sky-600: #35ade9;
+  --color-sky-950: #124b68;
+
+  --color-pink-50: #ffebf4;
+  --color-pink-200: #ffc0df;
+  --color-pink-400: #ff68b3;
+  --color-pink-500: #fb4ba3;
+  --color-pink-950: #68123d;
+
+  --color-purple-50: #efebff;
+  --color-purple-200: #cac0ff;
+  --color-purple-400: #8c71f6;
+  --color-purple-500: #7d52f4;
+  --color-purple-950: #351a75;
+
+  /* ── Semantic: primary (brand) ──────────────────────────── */
+  --color-primary-dark: #07341d;
+  --color-primary-base: #0b4627;
+  --color-primary-faint: #c2f5da;
+  --color-primary-mute: #e0faec;
+
+  /* ── Semantic: text ─────────────────────────────────────── */
+  --color-text-strong: #171717;
+  --color-text-sub: #5c5c5c;
+  --color-text-soft: #a3a3a3;
+  --color-text-disabled: #d1d1d1;
+  --color-text-inverse: #ffffff;
+  --color-text-accent: #335cff;
+
+  /* ── Semantic: backgrounds ──────────────────────────────── */
+  --color-bg-default: #ffffff;
+  --color-bg-surface: #f7f7f7;
+  --color-bg-soft: #f5f5f5;
+  --color-bg-subtle: #ebebeb;
+  --color-bg-muted: #d1d1d1;
+  --color-bg-strong: #171717;
+
+  /* ── Semantic: strokes ──────────────────────────────────── */
+  --color-stroke-soft: #0000000d;
+  --color-stroke-mid: #0000001a;
+  --color-stroke-strong: #00000033;
+
+  /* ── Semantic: status families (dark / base / faint / mute) ─ */
+  --color-info-dark: #122368;
+  --color-info-base: #335cff;
+  --color-info-faint: #c0d5ff;
+  --color-info-mute: #ebf1ff;
+
+  --color-warning-dark: #71330a;
+  --color-warning-base: #fa7319;
+  --color-warning-faint: #ffd9c0;
+  --color-warning-mute: #fff3eb;
+
+  --color-error-dark: #681219;
+  --color-error-base: #fb3748;
+  --color-error-faint: #ffc0c5;
+  --color-error-mute: #ffebec;
+
+  --color-success-dark: #0b4627;
+  --color-success-base: #1fc16b;
+  --color-success-faint: #c2f5da;
+  --color-success-mute: #e0faec;
+
+  --color-feature-dark: #351a75;
+  --color-feature-base: #7d52f4;
+  --color-feature-faint: #cac0ff;
+  --color-feature-mute: #efebff;
+
+  --color-verified-dark: #124b68;
+  --color-verified-base: #47c2ff;
+  --color-verified-faint: #c0eaff;
+  --color-verified-mute: #ebf8ff;
+
+  --color-highlight-dark: #68123d;
+  --color-highlight-base: #fb4ba3;
+  --color-highlight-faint: #ffc0df;
+  --color-highlight-mute: #ffebf4;
+
+  /* ── Data-viz roles (validated: adjacent CVD ΔE ≥ 8, normal-vision ≥ 15 on #fff).
+     Order is the safety mechanism — assign in sequence, never cycle. */
+  --color-series-1: #1daf61;
+  --color-series-2: #335cff;
+  --color-series-3: #fa7319;
+  --color-series-4: #7d52f4;
+  --color-series-muted: #d1d1d1;
+  --color-chart-grid: #ebebeb;
+  --color-chart-axis: #7b7b7b;
+
+  /* ── Typography (Inter, KernUI scale; 2% tracking on body/labels, 1% on titles) */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+
+  --text-2xs: 11px;
+  --text-2xs--line-height: 14px;
+  --text-2xs--letter-spacing: 0.02em;
+  --text-xs: 12px;
+  --text-xs--line-height: 16px;
+  --text-xs--letter-spacing: 0.02em;
+  --text-sm: 14px;
+  --text-sm--line-height: 20px;
+  --text-sm--letter-spacing: 0.01em;
+  --text-base: 16px;
+  --text-base--line-height: 24px;
+  --text-base--letter-spacing: 0.01em;
+  --text-lg: 18px;
+  --text-lg--line-height: 26px;
+  --text-lg--letter-spacing: 0;
+  --text-xl: 20px;
+  --text-xl--line-height: 28px;
+  --text-xl--letter-spacing: -0.005em;
+  --text-2xl: 24px;
+  --text-2xl--line-height: 32px;
+  --text-2xl--letter-spacing: -0.01em;
+  --text-3xl: 30px;
+  --text-3xl--line-height: 38px;
+  --text-3xl--letter-spacing: -0.015em;
+  --text-4xl: 36px;
+  --text-4xl--line-height: 44px;
+  --text-4xl--letter-spacing: -0.02em;
+
+  /* ── Radius (KernUI: sm 8 · md 12 · lg 16 · xl 24 · xxl 32) ─ */
+  --radius-*: initial;
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-10: 10px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-xxl: 32px;
+
+  /* ── Elevation ──────────────────────────────────────────── */
+  --shadow-*: initial;
+  --shadow-xs: 0 2px 4px -1px #00000005, 0 5px 13px -5px #0000000d;
+  --shadow-tag: 0 2px 2px #3636360a;
+  --shadow-sm: 0 1px 2px #0000000a, 0 2px 6px -2px #0000000d;
+  --shadow-md: 0 5px 6.5px #0000000d, 0 2px 2px #00000005;
+  --shadow-lg: 0 16px 32px -12px #0e121b1a, 0 4px 10px -4px #0000000f;
+  --shadow-xl: 0 24px 56px -16px #0e121b33, 0 8px 16px -8px #0000001a;
+  --shadow-button: 0 1px 2px #0a0d1408, inset 0 -1px 0 #0000000a;
+  --shadow-button-primary: 0 1px 2px #07341d33, inset 0 1px 0 #ffffff1f;
+
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-shimmer: shimmer 1.6s ease-in-out infinite;
+  --animate-fade-in: fade-in 160ms ease-out;
+  --animate-pop-in: pop-in 180ms var(--ease-out-quint);
+  --animate-slide-in-right: slide-in-right 260ms var(--ease-out-quint);
+  --animate-slide-in-left: slide-in-left 260ms var(--ease-out-quint);
+  --animate-toast-in: toast-in 240ms var(--ease-out-quint);
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes pop-in {
+    from { opacity: 0; transform: translateY(4px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes slide-in-right {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+  @keyframes slide-in-left {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+  }
+  @keyframes toast-in {
+    from { opacity: 0; transform: translateY(8px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    background: var(--color-bg-surface);
+    color: var(--color-text-strong);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection {
+    background: var(--color-primary-faint);
+    color: var(--color-primary-dark);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-primary-base);
+    outline-offset: 2px;
+  }
+  /* Number inputs: hide native spinners — QuantityInput provides its own steppers. */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+}
+
+@layer utilities {
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-neutral-300) transparent;
+  }
+  .skeleton {
+    background: linear-gradient(90deg, var(--color-bg-soft) 0%, var(--color-bg-subtle) 50%, var(--color-bg-soft) 100%);
+    background-size: 200% 100%;
+    animation: var(--animate-shimmer);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
